@@ -3,14 +3,21 @@
 #include <vector>
 #include <algorithm>
 #include <sstream>
+#include <ranges>
+#include <string_view>
 #include "../libs/pprint.hh"
 
 namespace utils
 {
-    inline auto rtrim(std::string&& s) -> std::string
+    auto rtrim(std::string_view sv) -> std::string_view
     {
-        s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return not std::isspace(ch); }).base(), s.end());
-        return s;
+        auto isNotWhitespace = [](unsigned char c) { return not std::isspace(c); };
+
+        auto lastNonWhitespace = std::ranges::find_if(
+            sv.rbegin(), sv.rend(), isNotWhitespace
+        ).base();
+
+        return { sv.begin(), lastNonWhitespace };
     }
 
     auto lines(const std::string& s) -> std::vector<std::string>
@@ -20,7 +27,7 @@ namespace utils
 
         for (std::string line; std::getline(ss, line);)
         {
-            lines.push_back(rtrim(std::move(line)));
+            lines.emplace_back(rtrim(line));
         }
         return lines;
     }
@@ -39,4 +46,9 @@ namespace utils
         std::cout << std::endl;
     }
 
+    template <typename T>
+    inline auto parse(const std::string& str) -> T
+    {
+        return static_cast<T>(std::stof(str));
+    }
 } // namespace utils
