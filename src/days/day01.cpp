@@ -1,13 +1,11 @@
-#include "../utilities.hpp"
 #include "include/day01.hpp"
+#include <concepts>
 #include <fstream>
 #include <iostream>
-#include <vector>
-#include <ranges>
-#include <concepts>
 #include <list>
 #include <ranges>
 #include <vector>
+#include "../utilities.hpp"
 
 auto sonar_sweep(const std::string& input) -> std::string
 {
@@ -30,7 +28,7 @@ auto Day01::part_one(const std::string& input) -> std::string
     return sonar_sweep(input);
 }
 
-auto Day01::part_two(const std::string&)->std::string
+auto Day01::part_two(const std::string&) -> std::string
 {
     return "part_two";
 }

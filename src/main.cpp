@@ -1,8 +1,9 @@
+#include <iostream>
+
 #include "advent.hpp"
 #include "args.hpp"
 #include "dataset.hpp"
 #include "days/Puzzle.hpp"
-#include <iostream>
 
 auto main(int argc, char** argv) -> int
 {
