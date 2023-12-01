@@ -1,34 +1,50 @@
 #include "include/day01.hpp"
+#include <algorithm>
 #include <concepts>
 #include <fstream>
 #include <iostream>
 #include <list>
+#include <numeric>
 #include <ranges>
 #include <vector>
 #include "../utilities.hpp"
 
-auto sonar_sweep(const std::string& input) -> std::string
-{
+auto sumOfCalibrationValues(const std::string& input) -> int
+{ // 54951
+
     auto lines = utils::lines(input);
-    std::vector<int> report{};
+    int sum = 0;
 
     for (const std::string& line : lines)
     {
-        int value = utils::parse<int>(line);
-        report.push_back(value);
+        std::vector<int> digits;
+        for (char c : line)
+        {
+            if (std::isdigit(c))
+            {
+                digits.push_back(c - '0');
+            }
+        }
+        sum += digits.front() * 10 + digits.back();
     }
 
-    utils::print(report);
-
-    return "sonar_sweep";
+    return sum;
 }
 
-auto Day01::part_one(const std::string& input) -> std::string
+auto sumOfCalibrationValuesPart2(const std::string& input)->int
 {
-    return sonar_sweep(input);
+    
 }
 
-auto Day01::part_two(const std::string&) -> std::string
+auto Day01::part_one(const std::string& input)->std::string
 {
-    return "part_two";
+    int result = sumOfCalibrationValues(input);
+    return std::to_string(result);
+}
+
+auto Day01::part_two(const std::string& input)->std::string
+{
+    // int result = sumOfCalibrationValuesPart2(input);
+    // return std::to_string(result);
+    return "foo";
 }
