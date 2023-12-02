@@ -1,4 +1,5 @@
-#pragma once
+#include "utilities.hpp"
+
 #include <algorithm>
 #include <ranges>
 #include <sstream>
@@ -6,9 +7,7 @@
 #include <string_view>
 #include <vector>
 
-#include "../libs/pprint.hh"
-
-namespace utils
+namespace helper
 {
 auto rtrim(std::string_view sv) -> std::string_view
 {
@@ -18,7 +17,10 @@ auto rtrim(std::string_view sv) -> std::string_view
 
     return {sv.begin(), lastNonWhitespace};
 }
+} // namespace
 
+namespace utils
+{
 auto lines(const std::string& s) -> std::vector<std::string>
 {
     auto lines = std::vector<std::string>{};
@@ -26,34 +28,18 @@ auto lines(const std::string& s) -> std::vector<std::string>
 
     for (std::string line; std::getline(ss, line);)
     {
-        lines.emplace_back(rtrim(line));
+        lines.emplace_back(helper::rtrim(line));
     }
     return lines;
 }
 
-inline auto print(std::ostream& os, const auto&... args)
+auto print(std::ostream& os, const auto&... args)
 {
     pprint::PrettyPrinter(os).print(args...);
 }
 
-inline auto print(const auto&... args)
+auto print(const auto&... args)
 {
     utils::print(std::cout, args...);
-}
-
-template <typename Container>
-auto printVec(const Container& container)
-{
-    for (auto& el : container)
-    {
-        std::cout << el << " ";
-    }
-    std::cout << std::endl;
-}
-
-template <typename T>
-inline auto parse(const std::string& str) -> T
-{
-    return static_cast<T>(std::stof(str));
 }
 } // namespace utils

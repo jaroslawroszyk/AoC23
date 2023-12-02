@@ -1,5 +1,5 @@
 #include "include/day01.hpp"
-#include "../utilities.hpp"
+#include "utilities.hpp"
 #include <algorithm>
 #include <concepts>
 #include <fstream>

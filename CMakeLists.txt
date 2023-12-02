@@ -1,37 +1,36 @@
 cmake_minimum_required(VERSION 3.20..3.30)
 project(AoC23)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 23)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wpedantic -Wunused")
+add_library(utilities
+            src/utilities/utilities.hpp
+            src/utilities/utilities.cpp)
 
-set(COMMON_INCLUDES
-    ${PROJECT_SOURCE_DIR}/src/include 
-    ${PROJECT_SOURCE_DIR}/libs)
+target_include_directories(utilities PUBLIC libs)
+target_link_directories(utilities PUBLIC libs)
 
-set(HEADERS
+set(DAY_HEADERS
     src/days/include/day01.hpp
-    src/days/Puzzle.hpp
-    src/dataset.hpp
-    src/args.hpp
-    src/advent.hpp
-    src/utilities.hpp)
+    src/days/include/day02.hpp)
 
-file(GLOB DAY_SOURCES "src/days/*.cpp")
+set(DAY_SOURCES
+    src/days/day01.cpp
+    src/days/day02.cpp)
 
-set(SOURCES
-    src/main.cpp
-    ${DAY_SOURCES})
+add_library(advent
+            ${DAY_HEADERS}
+            ${DAY_SOURCES}
+            src/advent.hpp)
 
-include_directories(${COMMON_INCLUDES})
+target_link_libraries(advent PUBLIC utilities)
+target_include_directories(advent PUBLIC src/utilities)
+target_link_directories(advent PUBLIC src/utilities)
 
-add_library(${PROJECT_NAME}_lib ${SOURCES} ${HEADERS})
+add_executable(${PROJECT_NAME}
+                src/args.hpp
+                src/main.cpp)
 
-add_executable(${PROJECT_NAME} src/main.cpp ${HEADERS})
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}_lib)
-
-target_include_directories(${PROJECT_NAME}_lib
-    PRIVATE
-    include)
+target_link_libraries(${PROJECT_NAME} PUBLIC advent)
+target_include_directories(${PROJECT_NAME} PUBLIC libs src/)
+target_link_directories(${PROJECT_NAME} PUBLIC libs src/)
