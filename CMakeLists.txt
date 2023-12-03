@@ -12,11 +12,13 @@ target_link_directories(utilities PUBLIC libs)
 
 set(DAY_HEADERS
     src/days/include/day01.hpp
-    src/days/include/day02.hpp)
+    src/days/include/day02.hpp
+    src/days/include/day03.hpp)
 
 set(DAY_SOURCES
     src/days/day01.cpp
-    src/days/day02.cpp)
+    src/days/day02.cpp
+    src/days/day03.cpp)
 
 add_library(advent
             ${DAY_HEADERS}
@@ -30,6 +32,8 @@ target_link_directories(advent PUBLIC src/utilities)
 add_executable(${PROJECT_NAME}
                 src/args.hpp
                 src/main.cpp)
+
+target_sources(${PROJECT_NAME} PRIVATE src/inc/days.inc)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC advent)
 target_include_directories(${PROJECT_NAME} PUBLIC libs src/)

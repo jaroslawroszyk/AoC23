@@ -3,8 +3,7 @@
 #include <memory>
 
 #include "days/Puzzle.hpp"
-#include "days/include/day01.hpp"
-#include "days/include/day02.hpp"
+#include "inc/days.inc"
 
 namespace advent
 {
@@ -18,6 +17,8 @@ auto puzzle(int day) -> std::unique_ptr<Puzzle>
             return std::make_unique<Day01>(Day01());
         case 2:
             return std::make_unique<Day02>(Day02());
+        case 3:
+            return std::make_unique<Day03>(Day03());
         default:
             std::cout << "ops";
             return nullptr;
