@@ -8,7 +8,7 @@
 auto main(int argc, char** argv) -> int
 {
     auto [day, example] = args::parse(argc, argv);
-    auto input = dataset::input(day, example);
+    auto input = dataset::load(day, example);
     auto puzzle = advent::puzzle(day);
 
     std::cout << "Advent of Code 2023 - Day " << day << "\n";

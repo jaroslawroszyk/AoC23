@@ -1,24 +1,27 @@
 #include <cassert>
 #include <fstream>
 #include <string>
-
+#include <format>
 namespace dataset
 {
-auto input(int day, bool example) -> std::string
-{
-    assert(day > 0 and day < 26);
 
-    auto path = std::string("../dataset/");
-    path += example ? "example" : "puzzle";
-    path += (day < 10 ? "0" : "") + std::to_string(day) + ".txt";
+inline auto load_input(int day) -> std::string {
+    auto zero = (day < 10 ? "0" : "");
+    auto path = std::format("../dataset/inputs/puzzle{}{}.txt", zero, day);
 
-    auto file = std::ifstream(path);
-    if (not file.is_open())
-    {
-        std::cerr << "Unable to open file: " << path << std::endl;
-        return "";
-    }
+    auto f = std::ifstream(path);
+    return std::string((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
+}
 
-    return std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+inline auto load_example(int day) -> std::string {
+    auto zero = (day < 10 ? "0" : "");
+    auto path = std::format("../dataset/examples/day{}{}.txt", zero, day);
+
+    auto f = std::ifstream(path);
+    return std::string((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
+}
+
+inline auto load(int day, bool example) -> std::string {
+    return example ? load_example(day) : load_input(day);
 }
 }; // namespace dataset
