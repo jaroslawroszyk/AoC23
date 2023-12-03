@@ -1,5 +1,4 @@
 #include "include/day01.hpp"
-#include "utilities.hpp"
 #include <algorithm>
 #include <concepts>
 #include <fstream>
@@ -8,20 +7,20 @@
 #include <numeric>
 #include <ranges>
 #include <vector>
+#include "utilities.hpp"
 
 namespace
 {
 const std::unordered_map<std::string, int> valuesToNumber = {
-        {"one", 1},
-        {"two", 2},
-        {"three", 3},
-        {"four", 4},
-        {"five", 5},
-        {"six", 6},
-        {"seven", 7},
-        {"eight", 8},
-        {"nine", 9}
-    };
+    {"one", 1},
+    {"two", 2},
+    {"three", 3},
+    {"four", 4},
+    {"five", 5},
+    {"six", 6},
+    {"seven", 7},
+    {"eight", 8},
+    {"nine", 9}};
 } // namespace
 
 auto trebuchetPartOne(const std::string& input) -> int // correct Answer: = 54951

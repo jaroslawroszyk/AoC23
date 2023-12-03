@@ -1,118 +1,146 @@
 #include "include/day02.hpp"
-#include <charconv>
 #include <chrono>
-#include <format>
 #include <iostream>
-#include <optional>
-#include <ranges>
 #include <sstream>
 #include <string>
 #include "utilities.hpp"
 
-// using std::operator""sv;
-
-struct CubeBag
+namespace
 {
-    int red;
-    int green;
-    int blue;
-};
-
 constexpr auto MAX_RED = 12;
 constexpr auto MAX_GREEN = 13;
 constexpr auto MAX_BLUE = 14;
+} // namespace
 
-static constexpr std::optional<int> svtoi(std::string_view const& sv)
+namespace parser
 {
-    int value;
-    if (std::from_chars(sv.data(), sv.data() + sv.size(), value).ec == std::errc{})
-    {
-        return value;
-    }
-    return std::nullopt;
-}
-
-constexpr bool tryAddCubes(std::string_view const& cubeColor, int const cubeCount, CubeBag& bag)
+enum class Type
 {
-    if (cubeColor == "red")
-    {
-        bag.red += cubeCount;
-        return bag.red <= MAX_RED;
-    }
-    if (cubeColor == "green")
-    {
-        bag.green += cubeCount;
-        return bag.green <= MAX_GREEN;
-    }
-    if (cubeColor == "blue")
-    {
-        bag.blue += cubeCount;
-        return bag.blue <= MAX_BLUE;
-    }
-    return false;
-}
+    RED,
+    GREEN,
+    BLUE
+};
 
-constexpr bool parseAndCheckGame(std::string_view const& setInfosToken)
+struct Cube
 {
-    size_t pos = 0;
-    while (pos != std::string_view::npos)
-    {
-        size_t semicolonPos = setInfosToken.find(';', pos);
-        auto const setToken = setInfosToken.substr(pos, semicolonPos - pos);
+    Type type;
+    int64_t count;
+    friend std::istream& operator>>(std::istream&, Cube&);
+};
 
-        auto bag = CubeBag{};
-        size_t cubePos = 0;
-        while (cubePos != std::string_view::npos)
+struct Game
+{
+    int64_t id;
+    std::unordered_map<Type, int64_t> max;
+    friend std::istream& operator>>(std::istream&, Game& game);
+    auto power() const -> int64_t { return max.at(Type::RED) * max.at(Type::GREEN) * max.at(Type::BLUE); }
+};
+
+std::istream& operator>>(std::istream& is, Game& game)
+{
+    if (is.peek() != 'G' or not is.ignore(5))
+    {
+        is.setstate(std::ios_base::failbit);
+        return is;
+    }
+    if (not(is >> game.id))
+    {
+        return is;
+    }
+    is.ignore(1);
+
+    game.max.clear();
+    Cube cube{};
+    while (is >> cube)
+    {
+        game.max[cube.type] = std::max(game.max[cube.type], cube.count);
+
+        auto delim = is.get();
+        if (delim == ',' or delim == ';') continue;
+        if (delim == '\n') break;
+        if (delim == EOF)
         {
-            size_t commaPos = setToken.find(',', cubePos);
-            auto const cubeToken = setToken.substr(cubePos, commaPos - cubePos);
-
-            auto const cubeTokenSv = std::string_view(cubeToken);
-            auto const whitespacePos = cubeTokenSv.find(' ');
-            auto const cubeCount = svtoi(cubeTokenSv.substr(0, whitespacePos)).value_or(0);
-            auto const cubeColor = cubeTokenSv.substr(whitespacePos + 1);
-            if (!tryAddCubes(cubeColor, cubeCount, bag))
-            {
-                return false;
-            }
-
-            if (commaPos == std::string_view::npos)
-            {
-                break;
-            }
-
-            cubePos = commaPos + 2;
-        }
-
-        if (semicolonPos == std::string_view::npos)
-        {
+            is.clear();
             break;
         }
-
-        pos = semicolonPos + 2;
     }
-
-    return true;
+    return is;
 }
 
-auto Day02::part_one(const std::string& input) -> std::string
+std::istream& operator>>(std::istream& is, Cube& cube)
 {
-    int answer = 0;
-    for (auto const& line : utils::lines(input))
+    if (not(is >> cube.count)) return is;
+    while (is.peek() == ' ')
+        is.get();
+    switch (is.peek())
     {
-        auto const colonPos = line.find(':');
-        auto const gameToken = line.substr(0, colonPos);
-        auto const setInfosToken = line.substr(colonPos + 2);
-        if (parseAndCheckGame(setInfosToken))
+        case 'b':
+            cube.type = Type::BLUE;
+            is.ignore(4);
+            break;
+        case 'g':
+            cube.type = Type::GREEN;
+            is.ignore(5);
+            break;
+        case 'r':
+            cube.type = Type::RED;
+            is.ignore(3);
+            break;
+        default:
+            throw std::runtime_error("parsing error");
+    }
+    return is;
+}
+} // namespace parser
+
+auto isGameValid(parser::Game& game)
+{
+    using namespace parser;
+    return game.max[Type::RED] <= MAX_RED && game.max[Type::GREEN] <= MAX_GREEN && game.max[Type::BLUE] <= MAX_BLUE;
+}
+
+// part 1
+auto possible_games(const std::string& input) -> int64_t
+{
+    int64_t sum{0};
+
+    for (const auto& line : utils::lines(input))
+    {
+        parser::Game game{};
+        std::istringstream iss(line);
+        iss >> game;
+
+        if (isGameValid(game))
         {
-            auto const gameId = stoi(gameToken.substr(5));
-            answer += gameId;
+            sum += game.id;
         }
     }
-    return std::to_string(answer);
+
+    return sum;
 }
 
-auto Day02::part_two(const std::string& input) -> std::string
+// part 2
+auto game_powah(const std::string& input) -> int64_t
 {
-    return "part two";
+    int64_t total_power = 0;
+
+    for (const auto& line : utils::lines(input))
+    {
+        parser::Game game{};
+        std::istringstream iss(line);
+        iss >> game;
+
+        total_power += game.power();
+    }
+
+    return total_power;
+}
+
+auto Day02::part_one(const std::string& input) -> std::string // 2449
+{
+    return std::to_string(possible_games(input));
+}
+auto Day02::part_two(const std::string& input) -> std::string // 63981
+{
+    return std::to_string(game_powah(input));
 }

@@ -17,7 +17,7 @@ auto rtrim(std::string_view sv) -> std::string_view
 
     return {sv.begin(), lastNonWhitespace};
 }
-} // namespace
+} // namespace helper
 
 namespace utils
 {

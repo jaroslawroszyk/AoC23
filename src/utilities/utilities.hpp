@@ -12,7 +12,7 @@
 namespace helper
 {
 auto rtrim(std::string_view sv) -> std::string_view;
-} // namespace
+} // namespace helper
 
 namespace utils
 {
