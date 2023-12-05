@@ -14,13 +14,15 @@ set(DAY_HEADERS
     src/days/include/day01.hpp
     src/days/include/day02.hpp
     src/days/include/day03.hpp
-    src/days/include/day04.hpp)
+    src/days/include/day04.hpp
+    src/days/include/day05.hpp)
 
 set(DAY_SOURCES
     src/days/day01.cpp
     src/days/day02.cpp
     src/days/day03.cpp
-    src/days/day04.cpp)
+    src/days/day04.cpp
+    src/days/day05.cpp)
 
 add_library(advent
             ${DAY_HEADERS}
