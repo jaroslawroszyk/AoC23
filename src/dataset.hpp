@@ -9,7 +9,7 @@ namespace dataset
 inline auto load_input(int day) -> std::string
 {
     auto zero = (day < 10 ? "0" : "");
-    auto path = "../dataset/inputs/puzzle05txt";
+    auto path = "../dataset/inputs/puzzle05.txt";
     // auto path = "../dataset/inputs/puzzle04.txt";
 
     auto f = std::ifstream(path);

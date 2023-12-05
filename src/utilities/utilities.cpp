@@ -33,6 +33,18 @@ auto lines(const std::string& s) -> std::vector<std::string>
     return lines;
 }
 
+auto split(const std::string& s, char delimeter) -> std::vector<std::string>
+{
+    auto lines = std::vector<std::string>{};
+    auto ss = std::stringstream(s);
+
+    for (std::string line; std::getline(ss, line, delimeter);)
+    {
+        lines.emplace_back(helper::rtrim(line));
+    }
+    return lines;
+}
+
 auto print(std::ostream& os, const auto&... args)
 {
     pprint::PrettyPrinter(os).print(args...);
