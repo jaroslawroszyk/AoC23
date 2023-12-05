@@ -1,5 +1,0 @@
-/Users/jarek/cpp/AoC23/CMakeFiles/utilities.dir
-/Users/jarek/cpp/AoC23/CMakeFiles/advent.dir
-/Users/jarek/cpp/AoC23/CMakeFiles/AoC23.dir
-/Users/jarek/cpp/AoC23/CMakeFiles/edit_cache.dir
-/Users/jarek/cpp/AoC23/CMakeFiles/rebuild_cache.dir
