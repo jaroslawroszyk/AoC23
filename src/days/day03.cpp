@@ -1,9 +1,8 @@
 #include "include/day03.hpp"
+#include "utilities.hpp"
 #include <algorithm>
-#include <iostream>
 #include <numeric>
 #include <string>
-#include "utilities.hpp"
 
 namespace part1
 {

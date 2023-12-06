@@ -1,8 +1,8 @@
 #include "include/day05.hpp"
+#include "utilities.hpp"
 #include <algorithm>
 #include <numeric>
 #include <string>
-#include "utilities.hpp"
 
 struct Range
 {

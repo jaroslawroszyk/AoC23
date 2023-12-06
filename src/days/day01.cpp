@@ -1,13 +1,9 @@
 #include "include/day01.hpp"
-#include <algorithm>
-#include <concepts>
-#include <fstream>
-#include <iostream>
-#include <list>
-#include <numeric>
-#include <ranges>
-#include <vector>
 #include "utilities.hpp"
+#include <algorithm>
+#include <iostream>
+#include <numeric>
+#include <vector>
 
 namespace
 {

@@ -1,8 +1,8 @@
 #include "include/day04.hpp"
+#include "utilities.hpp"
 #include <algorithm>
 #include <numeric>
 #include <string>
-#include "utilities.hpp"
 
 struct Card
 {

@@ -1,12 +1,10 @@
 #include "include/day06.hpp"
-#include <sys/_types/_int64_t.h>
+#include "utilities.hpp"
 #include <algorithm>
-#include <iterator>
 #include <numeric>
 #include <regex>
 #include <string>
 #include <vector>
-#include "utilities.hpp"
 
 namespace parser
 {

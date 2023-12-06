@@ -1,9 +1,8 @@
 #include "include/day02.hpp"
-#include <chrono>
+#include "utilities.hpp"
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "utilities.hpp"
 
 namespace
 {
