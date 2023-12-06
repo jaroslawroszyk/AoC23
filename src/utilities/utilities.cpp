@@ -54,4 +54,21 @@ auto print(const auto&... args)
 {
     utils::print(std::cout, args...);
 }
+
+auto findPattern(std::string& pattern, std::string& text) -> std::vector<std::string>
+{
+    std::vector<std::string> result{};
+    std::regex regex(pattern);
+
+    auto words_begin = std::sregex_iterator(text.begin(), text.end(), regex);
+    auto words_end = std::sregex_iterator();
+    for (std::sregex_iterator it = words_begin; it != words_end; ++it)
+    {
+        std::smatch match = *it;
+        std::string match_str = match.str();
+        result.push_back(match_str);
+    }
+
+    return result;
+}
 } // namespace utils

@@ -1,9 +1,8 @@
 #include "include/day05.hpp"
-#include "utilities.hpp"
 #include <algorithm>
 #include <numeric>
-#include <regex>
 #include <string>
+#include "utilities.hpp"
 
 struct Range
 {
@@ -17,29 +16,12 @@ struct Range
     }
 };
 
-auto findPattern(std::string& pattern, std::string& text) -> std::vector<std::string>
-{
-    std::vector<std::string> result{};
-    std::regex regex(pattern);
-
-    auto words_begin = std::sregex_iterator(text.begin(), text.end(), regex);
-    auto words_end = std::sregex_iterator();
-    for (std::sregex_iterator it = words_begin; it != words_end; ++it)
-    {
-        std::smatch match = *it;
-        std::string match_str = match.str();
-        result.push_back(match_str);
-    }
-
-    return result;
-}
-
 auto parse(const std::string& line)
 {
     auto lines = utils::split(line, ':');
 
     std::string pattern = "[0-9]+";
-    auto seeds = findPattern(pattern, lines[1]);
+    auto seeds = utils::findPattern(pattern, lines[1]);
     std::vector<int64_t> seedsMap{};
     std::transform(seeds.begin(), seeds.end(), std::back_inserter(seedsMap), utils::parse<int64_t>);
 
@@ -47,7 +29,7 @@ auto parse(const std::string& line)
     for (int i = 2; i < lines.size(); ++i)
     {
         auto givenMap = lines[i];
-        auto nums = findPattern(pattern, givenMap);
+        auto nums = utils::findPattern(pattern, givenMap);
 
         std::vector<Range> ranges{};
         for (int j = 0; j < nums.size(); j += 3)
