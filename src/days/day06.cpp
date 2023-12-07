@@ -1,10 +1,11 @@
 #include "include/day06.hpp"
-#include "utilities.hpp"
 #include <algorithm>
+#include <cassert>
 #include <numeric>
 #include <regex>
 #include <string>
 #include <vector>
+#include "utilities.hpp"
 
 namespace parser
 {
@@ -68,12 +69,18 @@ auto partTwo(const std::string& input) -> int64_t
     return records;
 }
 
-auto Day06::part_one(const std::string& line) -> std::string // 505494
+auto Day06::part_one(const std::string& input) -> std::string // 505494
 {
-    return std::to_string(partOne(line));
+    auto result = partOne(input);
+    auto expectedResult{505494};
+    assert(result == expectedResult);
+    return std::to_string(result);
 }
 
-auto Day06::part_two(const std::string& line) -> std::string // 23632299
+auto Day06::part_two(const std::string& input) -> std::string // 23632299
 {
-    return std::to_string(partTwo(line));
+    auto result = partTwo(input);
+    auto expectedResult{23632299};
+    assert(result == expectedResult);
+    return std::to_string(result);
 }

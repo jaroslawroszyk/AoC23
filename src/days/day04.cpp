@@ -1,8 +1,9 @@
 #include "include/day04.hpp"
-#include "utilities.hpp"
 #include <algorithm>
+#include <cassert>
 #include <numeric>
 #include <string>
+#include "utilities.hpp"
 
 struct Card
 {
@@ -102,12 +103,18 @@ auto total_scratchcards(const std::string& input)
         std::begin(cards), std::end(cards), 0, [](std::size_t total, const Card& card) { return total + card.copies; });
 }
 
-auto Day04::part_one(const std::string& input) -> std::string // // 20855
+auto Day04::part_one(const std::string& input) -> std::string // 20855
 {
-    return std::to_string(total_score(input));
+    auto result = total_score(input);
+    auto expectedResult{20855};
+    assert(result == expectedResult);
+    return std::to_string(result);
 }
 
 auto Day04::part_two(const std::string& input) -> std::string // 5489600
 {
-    return std::to_string(total_scratchcards(input));
+    auto result = total_scratchcards(input);
+    auto expectedResult{5489600};
+    assert(result == expectedResult);
+    return std::to_string(result);
 }

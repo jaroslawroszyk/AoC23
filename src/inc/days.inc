@@ -4,3 +4,4 @@
 #include "days/include/day04.hpp"
 #include "days/include/day05.hpp"
 #include "days/include/day06.hpp"
+#include "days/include/day07.hpp"

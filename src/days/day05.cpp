@@ -1,8 +1,9 @@
 #include "include/day05.hpp"
-#include "utilities.hpp"
 #include <algorithm>
+#include <cassert>
 #include <numeric>
 #include <string>
+#include "utilities.hpp"
 
 struct Range
 {
@@ -70,12 +71,13 @@ auto closest_coordinate(const std::string& line) -> int64_t
     return *std::min_element(seeds.begin(), seeds.end());
 }
 
-auto Day05::part_one(const std::string& line) -> std::string // 226172555
+auto Day05::part_one(const std::string& input) -> std::string // 226172555
 {
-    return std::to_string(closest_coordinate(line));
+    auto result = closest_coordinate(input);
+    auto expectedResult{226172555};
+    assert(result == expectedResult);
+    return std::to_string(result);
 }
-
-// auto closest_range_location(const std::string& input) -> int64_t
 
 auto Day05::part_two(const std::string&) -> std::string
 {

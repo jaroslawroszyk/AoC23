@@ -1,9 +1,10 @@
 #include "include/day01.hpp"
-#include "utilities.hpp"
 #include <algorithm>
+#include <cassert>
 #include <iostream>
 #include <numeric>
 #include <vector>
+#include "utilities.hpp"
 
 namespace
 {
@@ -19,7 +20,7 @@ const std::unordered_map<std::string, int> valuesToNumber = {
     {"nine", 9}};
 } // namespace
 
-auto trebuchetPartOne(const std::string& input) -> int // correct Answer: = 54951
+auto trebuchetPartOne(const std::string& input) -> int
 {
     auto lines = utils::lines(input);
     int sum = 0;
@@ -77,48 +78,19 @@ auto trebuchetPartTwo(const std::string& input) -> int // correct Answer = 55218
 
     return sum;
 }
-/*
-second Solution for part2
-    std::vector<std::string> numbers{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
-    for (const std::string& line : lines)
-    {
-        std::vector<int> digits{};
-        for (int i = 0; i < static_cast<int>(line.size()); ++i)
-        {
-            if (std::isdigit(line[i]))
-            {
-                digits.push_back(line[i] - '0');
-            }
-            else if (std::isalpha(line[i]))
-            {
-                for (size_t j = 0; j < numbers.size(); ++j)
-                {
-                    const auto& word = numbers[j];
-                    if (line.size() >= i + word.size() && line.substr(i, word.size()) == word)
-                    {
-                        digits.push_back(j + 1);
-                        break;
-                    }
-                }
-            }
-        }
-
-        if (not digits.empty())
-        {
-            sum += digits.front() * 10 + digits.back();
-        }
-    }
-*/
-
-auto Day01::part_one(const std::string& input) -> std::string
+auto Day01::part_one(const std::string& input) -> std::string // 54951
 {
-    int result = trebuchetPartOne(input);
+    auto result = trebuchetPartOne(input);
+    auto expectedResult{54951};
+    assert(result == expectedResult);
     return std::to_string(result);
 }
 
-auto Day01::part_two(const std::string& input) -> std::string
+auto Day01::part_two(const std::string& input) -> std::string // 55218
 {
-    int result = trebuchetPartTwo(input);
+    auto result = trebuchetPartTwo(input);
+    auto expectedResult{55218};
+    assert(result == expectedResult);
     return std::to_string(result);
 }

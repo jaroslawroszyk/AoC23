@@ -1,8 +1,9 @@
 #include "include/day03.hpp"
-#include "utilities.hpp"
 #include <algorithm>
+#include <cassert>
 #include <numeric>
 #include <string>
+#include "utilities.hpp"
 
 namespace part1
 {
@@ -65,7 +66,10 @@ auto sumSchemantic(const std::string& input) -> int
 
 auto Day03::part_one(const std::string& input) -> std::string
 {
-    return std::to_string(part1::sumSchemantic(input));
+    auto result = part1::sumSchemantic(input);
+    auto expectedResult{553079};
+    assert(result == expectedResult);
+    return std::to_string(result);
 }
 
 auto Day03::part_two(const std::string& input) -> std::string

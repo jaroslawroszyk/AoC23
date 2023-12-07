@@ -1,8 +1,8 @@
 #include "include/day02.hpp"
-#include "utilities.hpp"
 #include <iostream>
 #include <sstream>
 #include <string>
+#include "utilities.hpp"
 
 namespace
 {
@@ -137,9 +137,16 @@ auto game_powah(const std::string& input) -> int64_t
 
 auto Day02::part_one(const std::string& input) -> std::string // 2449
 {
-    return std::to_string(possible_games(input));
+    auto result = possible_games(input);
+    auto expectedResult{2449};
+    assert(result == expectedResult);
+    return std::to_string(result);
 }
+
 auto Day02::part_two(const std::string& input) -> std::string // 63981
 {
-    return std::to_string(game_powah(input));
+    auto result = game_powah(input);
+    auto expectedResult{63981};
+    assert(result == expectedResult);
+    return std::to_string(result);
 }
