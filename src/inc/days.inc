@@ -6,3 +6,4 @@
 #include "days/include/day06.hpp"
 #include "days/include/day07.hpp"
 #include "days/include/day08.hpp"
+#include "days/include/day09.hpp"
