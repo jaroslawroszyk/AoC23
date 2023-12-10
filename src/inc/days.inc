@@ -7,3 +7,4 @@
 #include "days/include/day07.hpp"
 #include "days/include/day08.hpp"
 #include "days/include/day09.hpp"
+#include "days/include/day10.hpp"
