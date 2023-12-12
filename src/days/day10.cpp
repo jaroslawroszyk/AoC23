@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <functional>
 #include <vector>
+#include <ranges>
 
 constexpr int DIM = 140;
 constexpr auto validN = std::array{'|', 'F', '7'};
