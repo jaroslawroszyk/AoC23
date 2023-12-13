@@ -50,6 +50,31 @@ inline auto parse(const std::string& str) -> T
     std::istringstream(str) >> i;
     return i;
 }
+template <typename K, typename V>
+std::vector<K> keys(const std::unordered_map<K, V>& map)
+{
+    std::vector<K> result{};
+    for (const auto& pair : map)
+    {
+        result.push_back(pair.first);
+    }
 
+    return result;
+}
+
+/*
+template <typename K, typename V>
+std::vector<K> keys(const std::unordered_map<K, V>& map)
+{
+    std::vector<K> result{};
+    result.reserve(map.size());
+
+    std::transform(map.begin(), map.end(), std::back_inserter(result), [](const auto& pair) { return pair.first; });
+
+    return result;
+}
+
+
+*/
 auto findPattern(std::string&, std::string&) -> std::vector<std::string>;
 } // namespace utils

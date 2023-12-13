@@ -1,11 +1,11 @@
 #include "include/day10.hpp"
-#include <cassert>
-#include <numeric>
-#include "utilities.hpp"
 #include <algorithm>
+#include <cassert>
 #include <functional>
-#include <vector>
+#include <numeric>
 #include <ranges>
+#include <vector>
+#include "utilities.hpp"
 
 constexpr int DIM = 140;
 constexpr auto validN = std::array{'|', 'F', '7'};
