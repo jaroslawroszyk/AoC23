@@ -1,6 +1,6 @@
 #include "include/day13.hpp"
-#include "utilities.hpp"
 #include <cassert>
+#include "utilities.hpp"
 
 namespace
 {
