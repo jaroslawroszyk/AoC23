@@ -41,7 +41,7 @@ auto trebuchetPartOne(const std::string& input) -> int
     return sum;
 }
 
-auto trebuchetPartTwo(const std::string& input) -> int // correct Answer = 55218
+auto trebuchetPartTwo(const std::string& input) -> int
 {
     auto lines = utils::lines(input);
 

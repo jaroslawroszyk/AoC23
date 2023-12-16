@@ -1,40 +1,10 @@
 #include "include/day02.hpp"
 #include <iostream>
-#include <sstream>
 #include <string>
 #include "utilities.hpp"
 
-namespace
-{
-constexpr auto MAX_RED = 12;
-constexpr auto MAX_GREEN = 13;
-constexpr auto MAX_BLUE = 14;
-} // namespace
-
 namespace parser
 {
-enum class Type
-{
-    RED,
-    GREEN,
-    BLUE
-};
-
-struct Cube
-{
-    Type type;
-    int64_t count;
-    friend std::istream& operator>>(std::istream&, Cube&);
-};
-
-struct Game
-{
-    int64_t id;
-    std::unordered_map<Type, int64_t> max;
-    friend std::istream& operator>>(std::istream&, Game& game);
-    auto power() const -> int64_t { return max.at(Type::RED) * max.at(Type::GREEN) * max.at(Type::BLUE); }
-};
-
 std::istream& operator>>(std::istream& is, Game& game)
 {
     if (is.peek() != 'G' or not is.ignore(5))
@@ -92,13 +62,19 @@ std::istream& operator>>(std::istream& is, Cube& cube)
 }
 } // namespace parser
 
+namespace
+{
+constexpr auto MAX_RED = 12;
+constexpr auto MAX_GREEN = 13;
+constexpr auto MAX_BLUE = 14;
+} // namespace
+
 auto isGameValid(parser::Game& game)
 {
     using namespace parser;
     return game.max[Type::RED] <= MAX_RED && game.max[Type::GREEN] <= MAX_GREEN && game.max[Type::BLUE] <= MAX_BLUE;
 }
 
-// part 1
 auto possible_games(const std::string& input) -> int64_t
 {
     int64_t sum{0};
@@ -118,7 +94,6 @@ auto possible_games(const std::string& input) -> int64_t
     return sum;
 }
 
-// part 2
 auto game_powah(const std::string& input) -> int64_t
 {
     int64_t total_power = 0;
