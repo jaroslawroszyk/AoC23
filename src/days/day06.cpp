@@ -38,7 +38,7 @@ auto parseInputSecondPart(const std::string& input)
 }
 } // namespace parser
 
-auto partOne(const std::string& input) -> int64_t
+auto Day06::partOne(const std::string& input) -> int64_t
 {
     auto raceData = parser::parseInputFirstPart(input);
     int64_t margin = 1;
@@ -53,7 +53,7 @@ auto partOne(const std::string& input) -> int64_t
     return margin;
 }
 
-auto partTwo(const std::string& input) -> int64_t
+auto Day06::partTwo(const std::string& input) -> int64_t
 {
     auto [time, distance] = parser::parseInputSecondPart(input);
 
@@ -69,7 +69,7 @@ auto partTwo(const std::string& input) -> int64_t
     return records;
 }
 
-auto Day06::part_one(const std::string& input) -> std::string // 505494
+auto Day06::part_one(const std::string& input) -> std::string
 {
     auto result = partOne(input);
     auto expectedResult{505494};
@@ -77,7 +77,7 @@ auto Day06::part_one(const std::string& input) -> std::string // 505494
     return std::to_string(result);
 }
 
-auto Day06::part_two(const std::string& input) -> std::string // 23632299
+auto Day06::part_two(const std::string& input) -> std::string
 {
     auto result = partTwo(input);
     auto expectedResult{23632299};
