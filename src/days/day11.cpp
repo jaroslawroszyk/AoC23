@@ -1,23 +1,6 @@
 #include "include/day11.hpp"
-#include <algorithm>
 #include <cassert>
-#include <numeric>
-#include <vector>
 #include "utilities.hpp"
-
-auto parse11(const std::string& input) -> std::vector<std::vector<char>>
-{
-    std::vector<std::vector<char>> result;
-    auto lines = utils::lines(input);
-
-    std::transform(
-        lines.begin(),
-        lines.end(),
-        std::back_inserter(result),
-        [](const std::string& line) { return std::vector<char>(line.begin(), line.end()); });
-
-    return result;
-}
 
 auto expand(const std::vector<std::vector<char>>& skymap, int64_t coefficient)
     -> std::vector<std::pair<int64_t, int64_t>>
@@ -85,9 +68,23 @@ auto distance(const std::vector<std::pair<int64_t, int64_t>>& galaxies) -> int64
     return sum;
 }
 
+auto Day11::parse(const std::string& input) -> std::vector<std::vector<char>>
+{
+    std::vector<std::vector<char>> result;
+    auto lines = utils::lines(input);
+
+    std::transform(
+        lines.begin(),
+        lines.end(),
+        std::back_inserter(result),
+        [](const std::string& line) { return std::vector<char>(line.begin(), line.end()); });
+
+    return result;
+}
+
 auto Day11::part_one(const std::string& input) -> std::string
 {
-    auto skymap = parse11(input);
+    auto skymap = parse(input);
     auto galaxies = expand(skymap, 2);
     auto result = distance(galaxies);
     auto expectedResult{9799681};
@@ -97,7 +94,7 @@ auto Day11::part_one(const std::string& input) -> std::string
 
 auto Day11::part_two(const std::string& input) -> std::string
 {
-    auto skymap = parse11(input);
+    auto skymap = parse(input);
     auto galaxies = expand(skymap, 1000000);
     auto result = distance(galaxies);
     auto expectedResult{513171773355};
