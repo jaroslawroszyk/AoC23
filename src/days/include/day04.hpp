@@ -1,5 +1,12 @@
 #pragma once
 #include "../Puzzle.hpp"
+struct Card
+{
+    int id;
+    std::vector<int> winningNumbers;
+    std::vector<int> numbersOnCard;
+    std::size_t copies;
+};
 
 struct Day04 : Puzzle
 {

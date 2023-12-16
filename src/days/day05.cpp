@@ -5,19 +5,7 @@
 #include <string>
 #include "utilities.hpp"
 
-struct Range
-{
-    int64_t destination{};
-    int64_t source{};
-    int64_t length{};
-    friend std::ostream& operator<<(std::ostream& os, const Range& range)
-    {
-        os << "{" << range.destination << " " << range.source << " " << range.length << "}";
-        return os;
-    }
-};
-
-auto parse(const std::string& line)
+auto Day05::parse(const std::string& line)
 {
     auto lines = utils::split(line, ':');
 
@@ -47,7 +35,7 @@ auto parse(const std::string& line)
     return std::make_pair(seedsMap, maps);
 }
 
-auto closest_coordinate(const std::string& line) -> int64_t
+auto Day05::closest_coordinate(const std::string& line) -> int64_t
 {
     auto [seeds, maps] = parse(line);
 
@@ -71,7 +59,7 @@ auto closest_coordinate(const std::string& line) -> int64_t
     return *std::min_element(seeds.begin(), seeds.end());
 }
 
-auto Day05::part_one(const std::string& input) -> std::string // 226172555
+auto Day05::part_one(const std::string& input) -> std::string
 {
     auto result = closest_coordinate(input);
     auto expectedResult{226172555};
@@ -81,5 +69,6 @@ auto Day05::part_one(const std::string& input) -> std::string // 226172555
 
 auto Day05::part_two(const std::string&) -> std::string
 {
+    // TODO: implement that
     return "part-two";
 }
