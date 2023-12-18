@@ -16,7 +16,6 @@ struct Point
 
     Point(int64_t x, int64_t y) : x(x), y(y) {}
     Point() = default;
-
 };
 
 namespace helper
