@@ -1,0 +1,25 @@
+#pragma once
+#include <functional>
+#include <utility>
+#include "../Puzzle.hpp"
+
+struct Point
+{
+    int64_t i{};
+    int64_t j{};
+};
+
+struct Day18 : Puzzle
+{
+public:
+    auto part_one(const std::string&) -> std::string override;
+    auto part_two(const std::string&) -> std::string override;
+
+private:
+    using Callback = std::function<std::pair<Point, int>(const std::string&)>;
+    auto parse(const std::string&, Callback) -> std::vector<Point>;
+    // auto toDir(char) -> Point;
+    auto shoelaceFormula(const std::vector<Point>&) -> int64_t;
+    auto partOne(const std::string&) -> int64_t;
+    auto partTwo(const std::string&) -> int64_t;
+};
