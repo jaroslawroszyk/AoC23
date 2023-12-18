@@ -9,6 +9,16 @@
 #include <vector>
 #include "../../libs/pprint.hh"
 
+struct Point
+{
+    int64_t x{};
+    int64_t y{};
+
+    Point(int64_t x, int64_t y) : x(x), y(y) {}
+    Point() = default;
+
+};
+
 namespace helper
 {
 auto rtrim(std::string_view) -> std::string_view;

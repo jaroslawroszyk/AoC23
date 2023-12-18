@@ -2,12 +2,7 @@
 #include <functional>
 #include <utility>
 #include "../Puzzle.hpp"
-
-struct Point
-{
-    int64_t i{};
-    int64_t j{};
-};
+#include "utilities.hpp"
 
 struct Day18 : Puzzle
 {

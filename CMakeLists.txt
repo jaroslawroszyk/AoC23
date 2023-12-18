@@ -23,7 +23,7 @@ set(DAY_HEADERS
     # src/days/include/day10.hpp uncoment after repair ranges on macos
     src/days/include/day11.hpp
     src/days/include/day13.hpp
-    # src/days/include/day14.hpp
+    src/days/include/day14.hpp
     src/days/include/day15.hpp
     src/days/include/day16.hpp
     src/days/include/day18.hpp)
@@ -41,7 +41,7 @@ set(DAY_SOURCES
     # src/days/day10.cpp) unccoment after repair ranges on macos
     src/days/day11.cpp
     src/days/day13.cpp
-    # src/days/day14.cpp
+    src/days/day14.cpp
     src/days/day15.cpp
     src/days/day16.cpp
     src/days/day18.cpp)

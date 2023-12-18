@@ -5,14 +5,6 @@ using namespace std;
 
 template <typename T>
 struct GridHash;
-class Point
-{
-public:
-    int64_t x{};
-    int64_t y{};
-
-    explicit Point(int64_t x, int64_t y) : x(x), y(y) {}
-};
 
 template <typename T>
 class Grid

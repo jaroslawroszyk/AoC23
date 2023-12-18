@@ -39,7 +39,7 @@ auto Day18::parse(const std::string& input, Callback callback) -> std::vector<Po
         Point last = points.back();
         auto [direction, length] = callback(line);
 
-        Point next = {last.i + direction.i * length, last.j + direction.j * length};
+        Point next = {last.x + direction.x * length, last.y + direction.y * length};
         points.push_back(next);
     }
 
@@ -50,8 +50,8 @@ auto Day18::shoelaceFormula(const std::vector<Point>& set) -> int64_t
 {
     auto partial = [](const Point& a, const Point& b)
     {
-        int64_t triangle = a.i * b.j - b.i * a.j;
-        return triangle + std::abs(b.i - a.i) + std::abs(b.j - a.j);
+        int64_t triangle = a.x * b.y - b.x * a.y;
+        return triangle + std::abs(b.x - a.x) + std::abs(b.y - a.y);
     };
 
     int64_t area{0};
