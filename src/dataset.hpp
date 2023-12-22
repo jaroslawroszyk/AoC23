@@ -20,7 +20,7 @@ inline auto load_example(int day) -> std::string
 {
     auto zero = (day < 10 ? "0" : "");
     // auto path = std::format("../dataset/examples/day{}{}.txt", zero, day);
-    auto path = "../dataset/examples/day18.txt";
+    auto path = "../dataset/examples/day21.txt";
 
     auto f = std::ifstream(path);
     return std::string((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());

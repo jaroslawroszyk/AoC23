@@ -26,6 +26,10 @@ struct Point
     bool operator==(const Point& other) const { return x == other.x && y == other.y; }
 
     bool operator!=(const Point& other) const { return !(*this == other); }
+
+    Point add(const Point& other) const { return {x + other.x, y + other.y}; }
+
+    Point div(int divisor) const { return {x / divisor, y / divisor}; }
 };
 
 namespace helper
@@ -48,6 +52,20 @@ auto printVec(const Container& container)
     for (auto& el : container)
     {
         std::cout << el << " ";
+    }
+    std::cout << std::endl;
+}
+
+template <typename T>
+void printVecT(const T& vec)
+{
+    for (const auto& row : vec)
+    {
+        for (char ch : row)
+        {
+            std::cout << ch;
+        }
+        std::cout << " ";
     }
     std::cout << std::endl;
 }

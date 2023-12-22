@@ -14,3 +14,4 @@
 #include "days/include/day15.hpp"
 #include "days/include/day16.hpp"
 #include "days/include/day18.hpp"
+#include "days/include/day21.hpp"

@@ -13,7 +13,6 @@ public:
 private:
     using Callback = std::function<std::pair<Point, int>(const std::string&)>;
     auto parse(const std::string&, Callback) -> std::vector<Point>;
-    // auto toDir(char) -> Point;
     auto shoelaceFormula(const std::vector<Point>&) -> int64_t;
     auto partOne(const std::string&) -> int64_t;
     auto partTwo(const std::string&) -> int64_t;
