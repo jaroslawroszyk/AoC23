@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "../Puzzle.hpp"
 
 struct Day11 : Puzzle

@@ -1,5 +1,6 @@
 #include "include/day14.hpp"
 #include <cassert>
+#include "Point.hpp"
 #include "utilities.hpp"
 
 auto Day14::parse(const std::string& input) -> Grid<char>

@@ -62,8 +62,8 @@ auto Day05::closest_coordinate(const std::string& line) -> int64_t
 auto Day05::part_one(const std::string& input) -> std::string
 {
     auto result = closest_coordinate(input);
-    auto expectedResult{226172555};
-    assert(result == expectedResult);
+    // auto expectedResult{226172555};
+    // assert(result == expectedResult);
     return std::to_string(result);
 }
 

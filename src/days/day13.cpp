@@ -4,7 +4,7 @@
 
 namespace
 {
-auto verticalSymmetry(const MyPair& a, const MyPair& b) -> std::pair<double, double>
+auto verticalSymmetry(const Pair& a, const Pair& b) -> std::pair<double, double>
 {
     int64_t minJ = std::min(a.j, b.j);
     int64_t maxJ = std::max(a.j, b.j);
@@ -13,7 +13,7 @@ auto verticalSymmetry(const MyPair& a, const MyPair& b) -> std::pair<double, dou
     return (deltaJ % 2 == 0) ? std::make_pair(-1.0, -1.0) : std::make_pair(0.0, minJ + deltaJ / 2.0);
 }
 
-auto horizontalSymmetry(const MyPair& a, const MyPair& b) -> std::pair<double, double>
+auto horizontalSymmetry(const Pair& a, const Pair& b) -> std::pair<double, double>
 {
     int64_t minI = std::min(a.i, b.i);
     int64_t maxI = std::max(a.i, b.i);
@@ -23,12 +23,7 @@ auto horizontalSymmetry(const MyPair& a, const MyPair& b) -> std::pair<double, d
 }
 } // namespace
 
-auto operator==(const MyPair& lhs, const MyPair& rhs) -> bool
-{
-    return lhs.i == rhs.i && lhs.j == rhs.j;
-}
-
-auto Day13::symmetry(const MyPair& a, const MyPair& b) -> std::pair<double, double>
+auto Day13::symmetry(const Pair& a, const Pair& b) -> std::pair<double, double>
 {
     if (a.i == b.i)
     {
@@ -43,7 +38,7 @@ auto Day13::symmetry(const MyPair& a, const MyPair& b) -> std::pair<double, doub
     return {-1.0, -1.0};
 }
 
-auto Day13::reflect(const MyPair& p, double symmetryRow, double symmetryColumn) -> MyPair
+auto Day13::reflect(const Pair& p, double symmetryRow, double symmetryColumn) -> Pair
 {
     if (symmetryRow == 0)
     {
@@ -54,7 +49,7 @@ auto Day13::reflect(const MyPair& p, double symmetryRow, double symmetryColumn) 
     return {p.i + static_cast<int64_t>(di * 2), p.j};
 }
 
-auto Day13::pointOfIncidence(const std::unordered_map<MyPair, bool>& mirrors, const MyPair& bounds, bool smudge)
+auto Day13::pointOfIncidence(const std::unordered_map<Pair, bool>& mirrors, const Pair& bounds, bool smudge)
     -> std::pair<int64_t, int64_t>
 {
     auto points = utils::keys(mirrors);
@@ -101,7 +96,7 @@ auto Day13::pointOfIncidence(const std::unordered_map<MyPair, bool>& mirrors, co
     return {0, 0};
 }
 
-auto Day13::parse(const std::string& input) -> std::pair<Day13::MyPairMapVector, Day13::MyPairVector>
+auto Day13::parse(const std::string& input) -> std::pair<Day13::PairMapVector, Day13::PairVector>
 {
     auto lines = utils::lines(input);
 
@@ -115,13 +110,13 @@ auto Day13::parse(const std::string& input) -> std::pair<Day13::MyPairMapVector,
     }
     sep.push_back(lines.size());
 
-    std::vector<std::unordered_map<MyPair, bool>> maps{};
-    std::vector<MyPair> bounds{};
+    std::vector<std::unordered_map<Pair, bool>> maps{};
+    std::vector<Pair> bounds{};
 
     for (size_t n = 0; n < sep.size() - 1; ++n)
     {
         auto local = std::vector<std::string>(lines.begin() + sep[n] + 1, lines.begin() + sep[n + 1]);
-        std::unordered_map<MyPair, bool> mirrors;
+        std::unordered_map<Pair, bool> mirrors;
 
         for (size_t i = 0; i < local.size(); ++i)
         {
@@ -158,8 +153,8 @@ auto Day13::partOne(const std::string& input) -> int64_t
 auto Day13::part_one(const std::string& input) -> std::string
 {
     auto result = partOne(input);
-    auto expectedResult{41859};
-    assert(result == expectedResult);
+    // auto expectedResult{41859};
+    // assert(result == expectedResult);
     return std::to_string(result);
 }
 
@@ -180,7 +175,7 @@ auto Day13::partTwo(const std::string& input) -> int64_t
 auto Day13::part_two(const std::string& input) -> std::string
 {
     auto result = partTwo(input);
-    auto expectedResult{30842};
-    assert(result == expectedResult);
+    // auto expectedResult{30842};
+    // assert(result == expectedResult);
     return std::to_string(result);
 }

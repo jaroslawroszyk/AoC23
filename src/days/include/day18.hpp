@@ -2,7 +2,7 @@
 #include <functional>
 #include <utility>
 #include "../Puzzle.hpp"
-#include "utilities.hpp"
+#include "Point.hpp"
 
 struct Day18 : Puzzle
 {

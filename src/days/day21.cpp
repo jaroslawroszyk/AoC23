@@ -4,9 +4,9 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "utilities.hpp"
+#include "Point.hpp"
 
-namespace 
+namespace
 {
 std::vector<Point> orthogonal()
 {

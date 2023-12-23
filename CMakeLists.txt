@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_library(utilities
             src/utilities/utilities.hpp
+            src/utilities/Pair.hpp
+            src/utilities/Point.hpp
             src/utilities/utilities.cpp)
 
 target_include_directories(utilities PUBLIC libs)
@@ -20,7 +22,7 @@ set(DAY_HEADERS
     src/days/include/day07.hpp
     src/days/include/day08.hpp
     src/days/include/day09.hpp
-    # src/days/include/day10.hpp uncoment after repair ranges on macos
+    src/days/include/day10.hpp
     src/days/include/day11.hpp
     src/days/include/day13.hpp
     src/days/include/day14.hpp
@@ -39,7 +41,7 @@ set(DAY_SOURCES
     src/days/day07.cpp
     src/days/day08.cpp
     src/days/day09.cpp
-    # src/days/day10.cpp) unccoment after repair ranges on macos
+    src/days/day10.cpp
     src/days/day11.cpp
     src/days/day13.cpp
     src/days/day14.cpp
