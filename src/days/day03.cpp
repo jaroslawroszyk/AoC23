@@ -4,6 +4,7 @@
 #include <numeric>
 #include <string>
 #include "utilities.hpp"
+
 namespace
 {
 static auto isdigit(char c) -> bool
@@ -27,6 +28,7 @@ static auto expand(const std::string& line, int start) -> std::pair<int, int>
     }
     return {s + 1, e};
 }
+
 auto isSpecial(const std::vector<std::string>& lines)
 {
     return [lines](int64_t row, int64_t col)
@@ -36,7 +38,6 @@ auto isSpecial(const std::vector<std::string>& lines)
         return not std::isdigit(lines[row][col]) && lines[row][col] != '.';
     };
 }
-
 } // namespace
 
 namespace std

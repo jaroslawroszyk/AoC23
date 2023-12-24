@@ -47,6 +47,10 @@ auto puzzle(int day) -> std::unique_ptr<Puzzle>
             return std::make_unique<Day18>(Day18());
         case 21:
             return std::make_unique<Day21>(Day21());
+        // case 22:
+        //     return std::make_unique<Day22>(Day22());
+        case 23:
+            return std::make_unique<Day23>(Day23());
         default:
             std::cout << "ops";
             return nullptr;
